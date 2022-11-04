@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ['CardsAgainst.jpg', 'Jenga.jpg', 'monopoly.jpg', 'Settlers-of-Catan.jpg', 'Zelda.jpg']
+  - for (let i = 0; i < 3; i++){
+    - let curImg = Math.floor(Math.random()*5);
+    img(src=`images/` + image_names[curImg], alt = image_names[curImg], height="200", width="200")
+  - }
