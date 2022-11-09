@@ -18,8 +18,20 @@ exports.game_detail = function(req, res) {
 }; 
  
 // Handle Game create on POST. 
-exports.game_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Game create POST'); 
+exports.game_create_post = async function(req, res) { 
+    console.log(req.body)
+    let document = new Game();
+    document.game_name = req.body.game_name;
+    document.genre = req.body.genre;
+    document.cost = req.body.cost;
+    try{
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 }; 
  
 // Handle Game delete form on DELETE. 
