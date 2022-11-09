@@ -31,3 +31,16 @@ exports.game_delete = function(req, res) {
 exports.game_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Game update PUT' + req.params.id); 
 }; 
+
+// VIEWS 
+// Handle a show all view 
+exports.game_view_all_Page = async function(req, res) { 
+    try{ 
+        theGames = await Game.find(); 
+        res.render('games', { title: 'Game Search Results', results: theGames }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
