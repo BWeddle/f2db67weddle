@@ -14,6 +14,9 @@ var usersRouter = require('./routes/users');
 var gamesRouter = require('./routes/games');
 var gridRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
+
+var Game = require("./models/game"); 
 
 var app = express();
 
@@ -32,6 +35,7 @@ app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
 app.use('/gridbuild', gridRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,5 +52,21 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// We can seed the collection if needed on server start
+async function recreateDB(){ 
+  // Delete everything 
+  await Game.deleteMany(); 
+ 
+  let instance1 = new 
+Game({game_name:"Catan",  genre:'Eurogame', cost:39.99}); 
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+} 
+ 
+let reseed = true; 
+if (reseed) { recreateDB();}
 
 module.exports = app;
