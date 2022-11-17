@@ -5,4 +5,7 @@ var router = express.Router();
 /* GET games. */
 router.get('/', game_controlers.game_view_all_Page);
 
+/* GET detail game page */ 
+router.get('/detail', game_controlers.game_view_one_Page);
+
 module.exports = router;

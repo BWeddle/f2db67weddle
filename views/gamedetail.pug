@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let gameid = toShow._id 
+  - let game_name = toShow.game_type 
+  - let game_cost = toShow.cost 
+  - let game_genre = toShow.genre 
+  div 
+    div.row 
+      div(class='gameAttr mr-3') Game ID is: 
+      div #{gameid} 
+    div.row 
+      div(class='gameAttr mr-3') Game Name is: 
+      div #{game_name} 
+    div.row 
+      div(class='gameAttr mr-3') Game Genre is: 
+      div #{game_genre} 
+    div.row 
+      div(class='gameAttr mr-3') Game Cost is: 
+      div #{game_cost} 

@@ -5,5 +5,4 @@ const gameSchema = mongoose.Schema({
  cost: Number 
 }) 
  
-module.exports = mongoose.model("Game", 
-gameSchema)
+module.exports = mongoose.model("Game", gameSchema)
