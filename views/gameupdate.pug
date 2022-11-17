@@ -1,0 +1,44 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+    - let gameid = toShow._id 
+    - let game_name = toShow.game_name 
+    - let gamecost = toShow.cost 
+    - let gamegenre = toShow.genre 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{gameid} 
+  - let actionid = "/resource/games/" + gameid 
+
+  form(id='GameForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.costumeAttr(for='game_name') Game name 
+        input#game_name(type='text', name='game_name', value=game_name) 
+    div.form-group 
+        label.gameAttr(for='genre') Game genre 
+        input#size(type='text', name='genre', value=gamegenre) 
+    div.form-group 
+        label.gameAttr(for='cost') Game cost 
+        input#cost(type='number', name='cost', value=gamecost) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['GameForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 
