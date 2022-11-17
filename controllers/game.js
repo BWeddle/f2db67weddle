@@ -99,7 +99,7 @@ exports.game_view_all_Page = async function(req, res) {
     } 
 }; 
 
-// Handle building the view for creating a costume. 
+// Handle building the view for creating a game. 
 // No body, no in path parameter, no query. 
 // Does not need to be async 
 exports.game_create_Page =  function(req, res) { 
@@ -113,13 +113,26 @@ exports.game_create_Page =  function(req, res) {
     } 
 }; 
 
-// Handle building the view for updating a costume. 
+// Handle building the view for updating a game. 
 // query provides the id 
 exports.game_update_Page =  async function(req, res) { 
     console.log("update view for item "+req.query.id) 
     try{ 
         let result = await Game.findById(req.query.id) 
         res.render('gameupdate', { title: 'Game Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a delete one view with id from query 
+exports.game_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Game.findById(req.query.id) 
+        res.render('gamedelete', { title: 'Game Delete', toShow: result }); 
     } 
     catch(err){ 
         res.status(500) 
