@@ -1,20 +1,12 @@
-extends layout
-
-block content
-  h1= title
-  p This is the second time we're doing this
-  button(type='button' onclick="doBump();") Push Me
-
-  div(id="bump") Bump the Count
-  
-  script.
-    var count = 0;
-    var bump = 1;
-    function doBump(){
-      count += bump;
-      bump += 1;
-      console.log("Lets See What We have")
-      document.getElementById('bump').innerHTML = "Count " + count + " with bump " + bump
-    }
-
-  a(href='/games') Step 6
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/games") Take me to games 
+    br 
+    a(href="/logout") Logout 
