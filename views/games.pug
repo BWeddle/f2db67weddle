@@ -7,8 +7,15 @@ block content
     div(class="row m-1")
       each item in items
         -let destination = `dispatch(\"/games/update?id=${item._id}\")`
+        -let destination2 = `dispatch(\"/games/create?id=${item._id}\")`
+        -let destination3 = `dispatch(\"/games/delete?id=${item._id}\")`
+        -let destination4 = `dispatch(\"/games/detail?id=${item._id}\")`
+        button.btn(class="btn-success ml-1", onclick=destination2) Create Game
         div(class="row-sm-2", class="m-1") #{item.game_name}(#{item.genre}) is #{item.cost}
         button.btn(class="btn-primary ml-1", onclick=destination) Update
+        div(class="row-sm-2")
+          button.btn(class="col-sm-2", class="btn-info", onclick=destination4) Details
+          button.btn(class="col-sm-2", class="btn-danger", onclick=destination3) Delete
   
   script.
     function dispatch(path){
