@@ -9,6 +9,7 @@ const secured = (req, res, next) => {
         return next();
     }
     req.session.returnTo = req.originalUrl; 
+    console.log(req.session.returnTo);
     res.redirect("/login");
 }
 

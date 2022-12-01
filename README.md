@@ -7,3 +7,5 @@ Attributes:
 - game_name (string)
 - cost (number)
 - genre (string)
+
+Post endpoint for login won't redirect to update with req.session.returnTo
